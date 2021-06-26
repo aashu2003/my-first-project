@@ -6,9 +6,9 @@ const http = require('http');
 const server = http.createServer(app);
 
 const {Server} = require('socket.io');
-
+const port = process.env.PORT || 8000;
 const io =new Server(server);
-app.use(express.static(path.join(__dirname , '../public_html')));
+app.use(express.static(__dirname));
 var user = {};
 var names = {};
 io.on('connection' , (socket)=>{
@@ -29,7 +29,7 @@ io.on('connection' , (socket)=>{
        socket.broadcast.emit('new-user-join' , ` User ${names[socket.id]} left the chat`);
     })
 })
-server.listen(8000 , ()=>{
-    console.log('http://localhost:8000');
+server.listen(port , ()=>{
+    console.log('port :' + port);
     
 })
