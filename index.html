@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+
+        text-transform: uppercase;
+        text-align: center;
+        }
+
+        #chatbox{
+            height: 500px;
+            width: 500px;
+            border: black solid 2px;
+            overflow-y: scroll;
+        }
+        .left{
+            width: 400px;
+            min-height: 20px;
+            font-size: 15px;
+            background-color: black;
+            color: white;
+            margin-right: 100px;
+        }
+        .right{
+            
+            min-height: 20px;
+            font-size: 15px;
+            background-color: black;
+            color: white;
+            margin-left: 100px;
+        }
+        .name{
+            color: red;
+        }
+        p{
+            padding: 5px;
+        }
+        .notice{
+            margin: auto;
+            background-color: blue;
+            width: 300px;
+            text-align: center;
+            margin-top: 5px;
+            color: white;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>chat app</h1>
+<section id="chatbox">
+    
+</section>
+<section id="formbox">
+    <input type="text" name="" id="textbox">
+    <button id="sentbtn">Send</button>
+</section>
+    <section id="users">
+
+    </section>
+
+    <script src="/socket.io/socket.io.js"></script>
+   <script src="./ashu.js"></script>
+
+</body>
+</html>
