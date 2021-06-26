@@ -1,0 +1,24 @@
+{
+  "name": "loodo",
+  "version": "1.0.0",
+  "description": "this is my simple app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aashu2003/my-first-project.git"
+  },
+  "author": "ashutosh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aashu2003/my-first-project/issues"
+  },
+  "homepage": "https://github.com/aashu2003/my-first-project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pptxgenjs": "^3.6.0",
+    "socket.io": "^4.1.2"
+  }
+}
