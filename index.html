@@ -69,8 +69,7 @@
        var name = prompt('your name :');
 // var room = prompt('your room :');
 
-if(name)
-socket.emit('new-user-join' , name );
+
 
 socket.on('new-user-join' , (name)=>{
     let msg = document.createElement('p');
