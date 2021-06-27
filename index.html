@@ -3,12 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>Document</title>
+
+  <style>
+    *{
+      padding: 0%;
+      margin: 0%;
+    }
+    h1{
+      background-color: rgb(145, 214, 216);
+      text-align: center;
+      margin: auto;
+    }
+    #nameroom{
+      margin: auto;
+      width: 500px;
+      background-color: rgb(194, 204, 184);
+      padding: 10px;
+    }
+    p{
+      font-size: 30px;
+      padding: 5px;
+    }
+    #inpname{
+      font-size: 30px;
+    }
+    #inproom{
+      font-size: 30px;
+    }
+    #massegbox{
+      margin: auto;
+      margin: 80px;
+      width: 600px;
+      height: 600px;
+      background-color: rgb(68, 65, 65);
+    }
+    p.Chat {
+    color: wheat;
+    background-color: blueviolet;
+}
+.chat-sender-name{
+  color: black;
+}
+#masseg-send-box{
+  width: 700px;
+  margin: auto;
+  /* padding: 10%; */
+}
+#sendmasseg{
+ width: 500px;
+ height: 40px;
+ margin: auto;
+}
+#send-my-info{
+  float: right;
+  height: 20px;
+  width: 100px;
+}
+  </style>
 </head>
 <body>
-  <h1>
-    hellow this is my first web
-  </h1>
+  <h1>Chat app By Ashu  </h1>
+ <div id="nameroom">
+  <p class="inpcontener"> Name: <input type="text" id="inpname"> </p>
+  <p class="inpcontener"> Room: <input type="text" id="inproom"> </p>
+  <button id="send-my-info">Join</button>
+ </div>
+<section id="massegbox">
+<p class="Chat">
+  <span class="chat-sender-name">Ashu: </span>
+  Hey hou are you
+</p>
+</section>
+<section id="online-user">
+
+</section>
+<section id="masseg-send-box">
+  <input type="text" id="sendmasseg">
+  <button id="sendbutton"> send</button>
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+
+  document.getElementById('send-my-info').addEventListener('click' , ()=>{
+    let name = document.getElementById('inpname').value;
+    let room = document.getElementById('inproom').value;
+
+    socket.emit('new-user-join' , name , room);
+  document.getElementById('nameroom').style.display = 'none';
+    console.log(name + room);
+  })
+
+  socket.on('join-status' , check =>{
+    if(check){
+      alert('you have joined this room.')
+    }
+    else{
+      document.getElementById('nameroom').style.display = 'block';
+      alert('wrong room id');
+    }
+  })
+
+// socket.on('group-info' , user =>{
+//   for (const key in user) {
+//  let name = user[key];
+//  console.log('ok');
+//  console.log(name);
+ 
+//  let namepad = document.createElement('div');
+//  namepad.setAttribute('class' , 'chat-sender-name');
+//  namepad.innerText = name;
+//  document.getElementById('online-user').appendChild(namepad);
+//   }
+// })
+document.getElementById('sendbutton').addEventListener('click' , ()=>{
+  if (document.getElementById('sendmasseg').value != "") {
+    socket.emit('send' , document.getElementById('sendmasseg').value);
+document.getElementById('sendmasseg').value = "";
+  }
+
+})
+
+socket.on('recive' , (masseg , sender)=>{
+let msgbox = document.createElement('p');
+msgbox.setAttribute('class' , 'Chat');
+msgbox.innerHTML = `<span class="chat-sender-name"> ${sender} :  </span>
+ ${masseg}`;
+
+document.getElementById('massegbox').appendChild(msgbox);
+})
+</script>
 </body>
 </html>
